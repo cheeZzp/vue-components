@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import Vue from "vue";
 import {
   Button,
   Input,
@@ -11,14 +11,14 @@ import {
   Switch,
   Steps,
 } from "ant-design-vue";
-
-Vue.use(Layout)
-Vue.use(Button)
-Vue.use(Input)
-Vue.use(Radio)
-Vue.use(Select)
-Vue.use(DatePicker)
-Vue.use(Alert)
-Vue.use(Modal)
-Vue.use(Switch)
-Vue.use(Steps)
+import "ant-design-vue/dist/antd.css";
+Vue.use(Layout);
+Vue.use(Button);
+Vue.use(Input);
+Vue.use(Radio);
+Vue.use(Select);
+Vue.use(DatePicker);
+Vue.use(Alert);
+Vue.use(Modal);
+Vue.use(Switch);
+Vue.use(Steps);
