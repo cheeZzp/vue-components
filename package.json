@@ -2,6 +2,8 @@
   "name": "vue-components",
   "version": "0.1.0",
   "private": true,
+  "main": "lib/vue-components.common.js",
+  "license": "MIT",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -11,6 +13,7 @@
   },
   "dependencies": {
     "ant-design-vue": "1.7.3",
+    "babel-plugin-import": "^1.13.3",
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0"

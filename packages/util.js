@@ -11,7 +11,6 @@ import {
   Switch,
   Steps,
 } from "ant-design-vue";
-import "ant-design-vue/dist/antd.css";
 Vue.use(Layout);
 Vue.use(Button);
 Vue.use(Input);
