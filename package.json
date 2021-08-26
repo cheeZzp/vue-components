@@ -6,10 +6,11 @@
   "license": "MIT",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lib": "vue-cli-service build --target lib --name vue-components --dest lib packages/index.js --report",
+    "lib": "vue-cli-service build",
+    "dist": "vue-cli-service build --target lib --name vue-components --dest dist packages/index.js --report",
     "test:unit": "vue-cli-service test:unit",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "dll": "webpack -p --progress --config ./webpack.dll.conf.js"
   },
   "dependencies": {
     "ant-design-vue": "1.7.3",
@@ -31,6 +32,8 @@
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^6.2.2",
     "prettier": "^2.2.1",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.11",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^3.3.10"
   }
 }
