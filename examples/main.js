@@ -1,8 +1,10 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
+import "./util";
 import vueComponents from "../dist/vue-components.common";
 import "../dist/vue-components.css";
+
 // import vueComponents from "../packages/index";
 
 Vue.config.productionTip = false;

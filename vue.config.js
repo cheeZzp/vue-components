@@ -100,11 +100,12 @@ const BUILD_CONFIG_DIST = {
       moment: "moment",
       // antd: "ant-design-vue",
     },
-    plugins: [
-      new webpack.DllReferencePlugin({
-        manifest: require("./dll/manifest.json"),
-      }),
-    ],
+    //dll功能关闭
+    // plugins: [
+    //   new webpack.DllReferencePlugin({
+    //     manifest: require("./dll/manifest.json"),
+    //   }),
+    // ],
   },
   chainWebpack: (config) => {
     config.optimization.delete("splitChunks");

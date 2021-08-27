@@ -1,4 +1,3 @@
-import "./util.js";
 import Button from "./button/index";
 import Alert from "./alert/index";
 import Input from "./input/index";
@@ -9,8 +8,8 @@ import Modal from "./modal/index";
 import Switch from "./switch/index";
 import Steps from "./steps/index";
 
-import { default as message } from "ant-design-vue/es/message/index";
-import { default as modal } from "ant-design-vue/es/modal/index";
+// import { default as message } from "ant-design-vue/es/message/index";
+// import { default as modal } from "ant-design-vue/es/modal/index";
 
 const components = [
   Button,
@@ -29,8 +28,8 @@ const install = function (Vue, opts = {}) {
     Vue.component(component.name, component);
   });
 
-  Vue.prototype.$message = message;
-  Vue.prototype.$confirm = modal.confirm;
+  // Vue.prototype.$message = message;
+  // Vue.prototype.$confirm = modal.confirm;
 };
 
 export default {
