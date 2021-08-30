@@ -1,14 +1,11 @@
 const path = require("path");
-// const fs = require("fs");
-// const webpack = require("webpack");
 
 //vue-loader
-// const VueLoaderPlugin = require("vue-loader-plugin");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
-const CaseSensitivePathsPlugin = require("case-sensitive-paths-webpack-plugin");
-// const VueLoaderPlugin = require(__dirname +
-//   "node_modules\\vue-loader-plugin\\index.js");
-
+const ProgressBarPlugin = require("progress-bar-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const BundleAnalyzerPlugin =
+  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const { join } = path;
 
 function resolve(dir) {
@@ -21,23 +18,16 @@ function moduleOf(dir) {
 
 module.exports = {
   mode: "production",
-  context: __dirname,
-  // node: {
-  //   setImmediate: false,
-  //   process: "mock",
-  //   dgram: "empty",
-  //   fs: "empty",
-  //   net: "empty",
-  //   tls: "empty",
-  //   child_process: "empty",
-  // },
-  entry: resolve("./packages/index.js"),
+  entry: {
+    app: ["./packages/index.js"],
+  },
   output: {
-    path: __dirname + "/pack",
-    filename: "js/[name].js",
-    publicPath: "/",
-    chunkFilename: "js/[name].js",
-    library: "ZiconUI", //package name
+    path: resolve("./pack"),
+    filename: "zicon-ui.common.js",
+    publicPath: "/dist/",
+    chunkFilename: "[id].js",
+    library: "ZICONUI", //package name
+    libraryExport: "default",
     libraryTarget: "commonjs2",
   },
   externals: {
@@ -51,58 +41,29 @@ module.exports = {
   resolve: {
     alias: {
       vue$: "vue/dist/vue.runtime.esm.js",
-      "@": "D:\\GitHubProjects\\vue-components\\examples",
+      "@": __dirname + "/packages",
+      "@ant-design/icons/lib/dist$": resolve("./examples/icons.js"),
     },
     extensions: [".mjs", ".js", ".vue", ".json", ".wasm"],
-    modules: ["node_modules", resolve("./node_modules"), resolve("./packages")],
-    plugins: [
-      {
-        apply: function nothing() {
-          // ¯\_(ツ)_/¯
-        },
-        makePlugin: function () {
-          /* omitted long function */
-        },
-        moduleLoader: function () {
-          /* omitted long function */
-        },
-        topLevelLoader: {
-          apply: function nothing() {
-            // ¯\_(ツ)_/¯
-          },
-        },
-        bind: function () {
-          /* omitted long function */
-        },
-        tsLoaderOptions: function () {
-          /* omitted long function */
-        },
-        forkTsCheckerOptions: function () {
-          /* omitted long function */
-        },
-      },
-    ],
-  },
-  resolveLoader: {
-    modules: ["node_modules", resolve("./node_modules")],
+    modules: ["node_modules"],
   },
   module: {
     rules: [
+      {
+        test: /\.(jsx?|babel|es6)$/,
+        include: process.cwd(),
+        exclude: /node_modules|utils\/popper\.js|utils\/date\.js/,
+        loader: "babel-loader",
+      },
       /* config.module.rule('vue') */
       {
         test: /\.vue$/,
         use: [
           {
-            loader: moduleOf("cache-loader/dist/cjs.js"),
-            options: {
-              cacheDirectory: moduleOf(".cache/vue-loader"),
-              cacheIdentifier: "169621da",
-            },
-          },
-          {
             loader: "vue-loader",
             options: {
               compilerOptions: {
+                preserveWhitespace: false,
                 whitespace: "condense",
               },
               cacheDirectory: moduleOf(".cache/vue-loader"),
@@ -112,32 +73,25 @@ module.exports = {
         ],
       },
       {
-        test: /\.m?jsx?$/,
-        exclude: /node_modules[\\/]core-js/,
-        use: [
-          // {
-          //   loader: moduleOf("cache-loader/dist/cjs.js"),
-          //   options: {
-          //     cacheDirectory: moduleOf(".cache/babel-loader"),
-          //     cacheIdentifier: "c97404fc",
-          //   },
-          // },
-          // {
-          //   loader: moduleOf("thread-loader/dist/cjs.js"),
-          // },
-          // {
-          //   loader: moduleOf("babel-loader/lib/index.js"),
-          // },
-          {
-            loader: moduleOf("babel-loader"),
-            options: {
-              presets: ["@babel/preset-env"],
-            },
-          },
-        ],
+        test: /\.css$/,
+        loaders: ["style-loader", "css-loader"],
+      },
+      {
+        test: /\.(svg|otf|ttf|woff2?|eot|gif|png|jpe?g)(\?\S*)?$/,
+        loader: "url-loader",
+        query: {
+          limit: 10000,
+          name: path.posix.join("static", "[name].[hash:7].[ext]"),
+        },
       },
     ],
   },
-  // plugins: [new VueLoaderPlugin()],
-  plugins: [new VueLoaderPlugin(), new CaseSensitivePathsPlugin()],
+  plugins: [
+    new ProgressBarPlugin(),
+    new VueLoaderPlugin(),
+    new BundleAnalyzerPlugin(),
+    new MiniCssExtractPlugin({
+      filename: "[name].[contenthash:7].css",
+    }),
+  ],
 };

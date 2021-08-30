@@ -4,7 +4,7 @@ import Input from "./input/index";
 import Radio from "./radio/index";
 import Select from "./select/index";
 import DatePicker from "./datepicker/index";
-import Modal from "./modal/index";
+// import Modal from "./modal/index";
 import Switch from "./switch/index";
 import Steps from "./steps/index";
 
