@@ -1,15 +1,15 @@
-import Button from "./button/index";
-import Alert from "./alert/index";
-import Input from "./input/index";
-import Radio from "./radio/index";
-import Select from "./select/index";
-import DatePicker from "./datepicker/index";
-// import Modal from "./modal/index";
-import Switch from "./switch/index";
-import Steps from "./steps/index";
+import Button from "./Button/index";
+import Alert from "./Alert/index";
+import Input from "./Input/index";
+import Radio from "./Radio/index";
+import Select from "./Select/index";
+import DatePicker from "./DatePicker/index";
+// import Modal from "./Modal/index";
+import Switch from "./Switch/index";
+import Steps from "./Steps/index";
 
 // import { default as message } from "ant-design-vue/es/message/index";
-// import { default as modal } from "ant-design-vue/es/modal/index";
+// import { default as Modal } from "ant-design-vue/es/Modal/index";
 
 const components = [
   Button,
@@ -18,7 +18,7 @@ const components = [
   Radio,
   Select,
   DatePicker,
-  Modal,
+  // Modal,
   Switch,
   Steps,
 ];
@@ -29,7 +29,7 @@ const install = function (Vue, opts = {}) {
   });
 
   // Vue.prototype.$message = message;
-  // Vue.prototype.$confirm = modal.confirm;
+  // Vue.prototype.$confirm = Modal.confirm;
 };
 
 export default {
