@@ -11,8 +11,7 @@
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
     "dll": "webpack -p --progress --config build/webpack.dll.conf.js",
-    "pack": "node build/gen.import.js && webpack -p --progress --config build/webpack.config.js",
-    "pack-inspect": "webpack -p --progress --config build/webpack.inspect.js"
+    "pack": "node build/gen.import.js && webpack -p --progress --config build/webpack.config.js"
   },
   "dependencies": {
     "ant-design-vue": "1.7.3",

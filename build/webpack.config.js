@@ -4,8 +4,10 @@ const path = require("path");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
 const ProgressBarPlugin = require("progress-bar-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const BundleAnalyzerPlugin =
-  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+
+// 包文件分析
+// const BundleAnalyzerPlugin =
+//   require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const { join } = path;
 
 function resolve(dir) {
@@ -22,7 +24,7 @@ module.exports = {
     app: ["./packages/index.js"],
   },
   output: {
-    path: resolve("./pack"),
+    path: resolve("../pack"),
     filename: "zicon-ui.common.js",
     publicPath: "/dist/",
     chunkFilename: "[id].js",
@@ -103,9 +105,9 @@ module.exports = {
   plugins: [
     new ProgressBarPlugin(),
     new VueLoaderPlugin(),
-    new BundleAnalyzerPlugin(),
     new MiniCssExtractPlugin({
       filename: "[name].[contenthash:7].css",
     }),
+    // new BundleAnalyzerPlugin()
   ],
 };
